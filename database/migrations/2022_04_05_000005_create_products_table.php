@@ -22,9 +22,8 @@ return new class extends Migration
             $table->float('Peso_volumen',4,2); //en función de si el valor Medicion es true o false
             $table->float('Precio_individual',3,2); //precio del producto individual
             $table->float('Precio_peso_volumen',3,2); //precio por unidad de peso o volumen
-            $table->float('Precio_pack',3,2); //precio del paquete si se vende en ese formato
-            $table->integer('Unidades_pack'); //cantidad de unidades en un paquete
             $table->string('Codigo_barras')->unique();
+            $table->integer('Stock');
             $table->unsignedBigInteger('concretecategory_id');
             $table->timestamps();
 

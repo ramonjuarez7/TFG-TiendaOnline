@@ -17,8 +17,8 @@
 <div class="row">
     @for($j = 0; $j < 4; $j++)
   <div class="col-md-3">
-    <div href="#" class="card card-product-grid">
-      <a href="#" class="img-wrap"> <img src={{ $products[$j * $i]->Imagen }}> </a>
+    <div href="{{ url('/Producto/'. $products[$j * $i]->id) }}" class="card card-product-grid">
+      <a href="{{ url('/Producto/'. $products[$j * $i]->id) }}" class="img-wrap"> <img src={{ $products[$j * $i]->Imagen }}> </a>
       <figcaption class="info-wrap">
         <a href="#" class="title">{{ $products[$j * $i]->Nombre }}</a>
         <div class="price mt-1">{{ $products[$j * $i]->Precio_individual }}€</div> <!-- price-wrap.// -->

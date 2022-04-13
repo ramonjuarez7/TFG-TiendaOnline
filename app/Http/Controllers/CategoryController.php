@@ -33,11 +33,11 @@ class CategoryController extends Controller
                 }
             }
         } else {
-            return response()->view('errors.404', [], 404);
+            return view('error.error404');
         }
 
         if($ccid == -1){
-            return response()->view('errors.404', [], 404);
+            return view('error.error404');
         }
 
         $products = \DB::select('SELECT * FROM products where concretecategory_id ='.$ccid);
@@ -62,7 +62,7 @@ class CategoryController extends Controller
         }
 
         if($scid == -1){
-            return response()->view('errors.404', [], 404);
+            return view('error.error404');
         }
 
         $products = \DB::select('SELECT * FROM products where concretecategory_id in 

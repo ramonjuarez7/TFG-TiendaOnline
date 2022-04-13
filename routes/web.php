@@ -16,8 +16,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'MasterPageController@inicio');
 Route::get('index', 'MasterPageController@inicio');
 
+Route::get('Carrito/Delete/{rawId}', 'CarritoController@delete');
+Route::get('Carrito/Add/{rawId}', 'CarritoController@add');
+
+Route::get('Carrito', 'CarritoController@index');
+Route::get('Carrito/Finish', 'CarritoController@finish');
+Route::get('Carrito/{id}/{cantidad}', 'ProductoController@addToCart');
+Route::get('Carrito/{id}', 'ProductoController@addToCart');
+
+
 Route::get('Productos/{supercategory}/{midcategory}','CategoryController@inicio_concretecat');
 Route::get('Productos/{supercategory}','CategoryController@inicio_supercat');
+
+Route::get('About','InicioController@about');
+Route::get('Contact','InicioController@contact');
+
+Route::get('Buscar','InicioController@search');
+
+Route::get('Producto/{id}','ProductoController@inicio');
 
 
 

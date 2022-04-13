@@ -33,7 +33,7 @@
 <nav class="navbar navbar-dark navbar-expand p-0 bg-primary">
 <div class="container">
     <ul class="navbar-nav d-none d-md-flex mr-auto">
-    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
     <li class="nav-item"><a class="nav-link" href="#">Envíos</a></li>
     <li class="nav-item"><a class="nav-link" href="#">Pago</a></li>
     </ul>
@@ -48,14 +48,14 @@
   <div class="container">
 <div class="row align-items-center">
   <div class="col-lg-2 col-6">
-    <a href="#" class="brand-wrap">
-      Butore
+    <a href="/" class="brand-wrap">
+      Butore Store
     </a> <!-- brand-wrap.// -->
   </div>
   <div class="col-lg-6 col-12 col-sm-12">
-    <form action="#" class="search">
+    <form action="/Buscar" class="search">
       <div class="input-group w-100">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" name="buscar" class="form-control" placeholder="Buscar">
           <div class="input-group-append">
             <button class="btn btn-primary" type="submit">
               <i class="fa fa-search"></i>
@@ -67,16 +67,16 @@
   <div class="col-lg-4 col-sm-6 col-12">
     <div class="widgets-wrap float-md-right">
       <div class="widget-header  mr-3">
-        <a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></a>
+        <a href="/Carrito" class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></a>
         <span class="badge badge-pill badge-danger notify">0</span>
       </div>
       <div class="widget-header icontext">
         <a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
         <div class="text">
-          <span class="text-muted">Welcome!</span>
+          <span class="text-muted">¡Bienvenido!</span>
           <div> 
-            <a href="#">Sign in</a> |  
-            <a href="#"> Register</a>
+            <a href="#">Iniciar Sesión</a> |  
+            <a href="#"> Registro</a>
           </div>
         </div>
       </div>
@@ -130,45 +130,23 @@
     <section class="footer-top  padding-y">
       <div class="row">
         <aside class="col-md col-6">
-          <h6 class="title">Brands</h6>
+          <h6 class="title">Compañía</h6>
           <ul class="list-unstyled">
-            <li> <a href="#">Adidas</a></li>
-            <li> <a href="#">Puma</a></li>
-            <li> <a href="#">Reebok</a></li>
-            <li> <a href="#">Nike</a></li>
+            <li> <a href="/About">Sobre nosotros</a></li>
+            <li> <a href="/Contact">Contáctanos</a></li>
           </ul>
         </aside>
         <aside class="col-md col-6">
-          <h6 class="title">Company</h6>
+          <h6 class="title">Usuario</h6>
           <ul class="list-unstyled">
-            <li> <a href="#">About us</a></li>
-            <li> <a href="#">Career</a></li>
-            <li> <a href="#">Find a store</a></li>
-            <li> <a href="#">Rules and terms</a></li>
-            <li> <a href="#">Sitemap</a></li>
-          </ul>
-        </aside>
-        <aside class="col-md col-6">
-          <h6 class="title">Help</h6>
-          <ul class="list-unstyled">
-            <li> <a href="#">Contact us</a></li>
-            <li> <a href="#">Money refund</a></li>
-            <li> <a href="#">Order status</a></li>
-            <li> <a href="#">Shipping info</a></li>
-            <li> <a href="#">Open dispute</a></li>
-          </ul>
-        </aside>
-        <aside class="col-md col-6">
-          <h6 class="title">Account</h6>
-          <ul class="list-unstyled">
-            <li> <a href="#"> User Login </a></li>
-            <li> <a href="#"> User register </a></li>
-            <li> <a href="#"> Account Setting </a></li>
-            <li> <a href="#"> My Orders </a></li>
+            <li> <a href="#"> Iniciar Sesión </a></li>
+            <li> <a href="#"> Registro </a></li>
+            <li> <a href="#"> Configuración </a></li>
+            <li> <a href="#"> Mis Pedidos </a></li>
           </ul>
         </aside>
         <aside class="col-md">
-          <h6 class="title">Social</h6>
+          <h6 class="title">Redes sociales</h6>
           <ul class="list-unstyled">
             <li><a href="#"> <i class="fab fa-facebook"></i> Facebook </a></li>
             <li><a href="#"> <i class="fab fa-twitter"></i> Twitter </a></li>
@@ -180,7 +158,7 @@
     </section>  <!-- footer-top.// -->
     <section class="footer-bottom row">
       <div class="col-md-2">
-        <p class="text-muted">   2022 Butore </p>
+        <p class="text-muted">   2022 Butore Store </p>
       </div>
       <div class="col-md-8 text-md-center">
         <span  class="px-2">rjc13@alu.ua.es</span>
