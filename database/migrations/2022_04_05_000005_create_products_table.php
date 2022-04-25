@@ -24,6 +24,7 @@ return new class extends Migration
             $table->float('Precio_peso_volumen',3,2); //precio por unidad de peso o volumen
             $table->string('Codigo_barras')->unique();
             $table->integer('Stock');
+            $table->integer('Maximo_pedido');
             $table->unsignedBigInteger('concretecategory_id');
             $table->timestamps();
 

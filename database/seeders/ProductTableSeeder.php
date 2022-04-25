@@ -19,7 +19,7 @@ class ProductTableSeeder extends Seeder
         //
         \DB::table('products')->delete();
 
-        for($i = 0; $i < 11; $i++){
+        for($i = 0; $i < 20; $i++){
             $product = new Product();
             $product->Nombre = "Agua Bezoya 1.5L";
             $product->Imagen = '/images/products/1.jpg';
@@ -31,6 +31,7 @@ class ProductTableSeeder extends Seeder
             $product->Codigo_barras = 1+$i;
             $product->concretecategory_id = 1;
             $product->Stock=10;
+            $product->Maximo_pedido=5;
             $product->save();
         }
 
@@ -45,6 +46,7 @@ class ProductTableSeeder extends Seeder
             $product->Codigo_barras = 8989898;
             $product->concretecategory_id = 1;
             $product->Stock=10;
+            $product->Maximo_pedido=5;
             $product->save();
 
 

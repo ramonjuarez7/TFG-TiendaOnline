@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Sobre nosotros')
+@section('title', 'Butore Store - Sobre nosotros')
 
 
 @section('content')

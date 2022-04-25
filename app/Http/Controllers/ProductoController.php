@@ -13,13 +13,14 @@ use Redirect;
 class ProductoController extends Controller
 {
     public function inicio($id){
+        $cart = ShoppingCart::all();
         $sc = Supercategory::All();
         $cc = Concretecategory::All();
         $producto = Product::findOrFail($id);
         $concretcat = Concretecategory::findOrFail($producto->concretecategory_id);
         $supercat = Supercategory::findOrFail($concretcat->supercategory_id);
         return view('products.product')->with('supercategories', $sc)->with('concretecategories', $cc)
-            ->with('producto', $producto)->with('ccat', $concretcat)->with('scat', $supercat);
+            ->with('producto', $producto)->with('ccat', $concretcat)->with('scat', $supercat)->with('cart', $cart);
     }
 
     public function addToCart($id, Request $cantidad){

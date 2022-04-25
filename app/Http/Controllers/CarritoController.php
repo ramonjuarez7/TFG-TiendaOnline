@@ -57,6 +57,7 @@ class CarritoController extends Controller
     }
 
     public function add($rawId){
+        $carrito = ShoppingCart::all();
         $sc = Supercategory::All();
         $cc = Concretecategory::All();
         $item = ShoppingCart::get($rawId);
@@ -78,12 +79,15 @@ class CarritoController extends Controller
     }
 
     public function finish(){
+        $cart = ShoppingCart::all();
         $sc = Supercategory::All();
         $cc = Concretecategory::All();
         if(!Auth::user()) return redirect('login');
-        return redirect('Pedido/Finalizar')->with('supercategories', $sc)->with('concretecategories', $cc);
+        return redirect('Pedido/Finalizar')->with('supercategories', $sc)
+        ->with('concretecategories', $cc)->with('cart', $cart);
     }
 
+    /*
     public static function processOrder($tarj, $Pedido, $dir) {
         
         $rollback = false;
@@ -116,6 +120,6 @@ class CarritoController extends Controller
 
         DB::commit();
         return true;
-    }
+    }*/
 
 }

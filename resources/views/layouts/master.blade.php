@@ -68,15 +68,32 @@
     <div class="widgets-wrap float-md-right">
       <div class="widget-header  mr-3">
         <a href="/Carrito" class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></a>
-        <span class="badge badge-pill badge-danger notify">0</span>
+        <?php 
+        $total = 0;
+        foreach($cart as $item){
+          $total += $item->qty;
+        } ?>
+        <span class="badge badge-pill badge-danger notify">{{ $total }}</span>
       </div>
       <div class="widget-header icontext">
-        <a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
+        @guest
+        <a href="/Login" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
+        @else
+        <a href="/Perfil" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
+        @endguest
         <div class="text">
           <span class="text-muted">¡Bienvenido!</span>
           <div> 
-            <a href="#">Iniciar Sesión</a> |  
-            <a href="#"> Registro</a>
+            @guest
+            <a href="/Login">Iniciar Sesión</a> |  
+            <a href="/Registro"> Registro</a>
+            @else
+            <a href="/Perfil">Perfil</a> |
+            <a href="#">Mis cupones</a> |
+            <a class="nav-item nav-link text-light" method='POST' tooltip="prueba" href="{{ url('/Logout') }}">
+                <i class="fas fa-sign-out-alt"> Cerrar Sesión</i>
+            </a> 
+            @endguest
           </div>
         </div>
       </div>
@@ -139,10 +156,15 @@
         <aside class="col-md col-6">
           <h6 class="title">Usuario</h6>
           <ul class="list-unstyled">
+            @guest
             <li> <a href="#"> Iniciar Sesión </a></li>
             <li> <a href="#"> Registro </a></li>
-            <li> <a href="#"> Configuración </a></li>
+            @else
+            <li> <a href="#"> Perfil </a></li>
             <li> <a href="#"> Mis Pedidos </a></li>
+            <li> <a href="#"> Mis cupones </a></li>
+            <li> <a href="#"> Ajustes </a></li>
+            @endguest
           </ul>
         </aside>
         <aside class="col-md">

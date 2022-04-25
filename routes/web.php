@@ -35,5 +35,23 @@ Route::get('Buscar','InicioController@search');
 
 Route::get('Producto/{id}','ProductoController@inicio');
 
+Route::get('Registro', 'Auth\RegisterController@registro');
+Route::post('Registro', 'Auth\RegisterController@useradd');
+
+Route::get('Login', 'Auth\LoginController@loginIndex');
+Route::post('Login','Auth\LoginController@loginPost');
+
+Route::get('Logout','Auth\LoginController@logout');
+Route::get('Perfil','UserController@perfil');
+Route::get('Perfil/Cuenta','UserController@cuenta');
+Route::get('Perfil/Direcciones','UserController@direcciones');
+Route::get('Perfil/Datos','UserController@datos');
+Route::get('Perfil/{pest}/Modificar/{target}','UserController@modificar');
+Route::post('Perfil/{pest}/Modificar/{target}','UserController@modificarPost');
 
 
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

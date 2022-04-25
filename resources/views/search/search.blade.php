@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Búsqueda')
+@section('title', 'Resultados')
 
 
 @section('content')
@@ -11,21 +11,19 @@
     <h3 class="section-title">Búsqueda</h3>      
     <a>Mostrando resultados de: {{ $busqueda }} </a>
 </header><!-- sect-heading -->
-  @for($i = 1; $i < sizeof($products) / 4 + 1; $i++)
 <div class="row">
-    @for($j = 0; $j < 4; $j++)
+@foreach($products as $prod)
   <div class="col-md-3">
-    <div href="{{ url('/Producto/'. $products[$j * $i]->id) }}" class="card card-product-grid">
-      <a href="{{ url('/Producto/'. $products[$j * $i]->id) }}" class="img-wrap"> <img src={{ $products[$j * $i]->Imagen }}> </a>
+    <div href="{{ url('/Producto/'. $prod->id) }}" class="card card-product-grid">
+      <a href="{{ url('/Producto/'. $prod->id) }}" class="img-wrap"> <img src={{ $prod->Imagen }}> </a>
       <figcaption class="info-wrap">
-        <a href="#" class="title">{{ $products[$j * $i]->Nombre }}</a>
-        <div class="price mt-1">{{ $products[$j * $i]->Precio_individual }}€</div> <!-- price-wrap.// -->
+        <a href="{{ url('/Producto/'. $prod->id) }}" class="title">{{ $prod->Nombre }}</a>
+        <div class="price mt-1">{{ $prod->Precio_individual }}€</div> <!-- price-wrap.// -->
       </figcaption>
     </div>
-  </div> <!-- col.// -->
-  @endfor
-</div> <!-- row.// -->
-@endfor
+  </div>
+   <!-- col.// -->
+  @endforeach
 </div> <!-- container .//  -->
 </section>
 @endsection

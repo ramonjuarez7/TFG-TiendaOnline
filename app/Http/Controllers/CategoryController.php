@@ -7,10 +7,13 @@ use App\Models\Supercategory;
 use App\Models\Concretecategory;
 use App\Models\Product;
 
+use ShoppingCart;
+
 class CategoryController extends Controller
 {
     //
     public function inicio_concretecat($supercategory, $concretecategory){
+        $cart = ShoppingCart::all();
         $sc = Supercategory::All();
         $cc = Concretecategory::All();
         $ccobject = new Concretecategory();
@@ -44,11 +47,12 @@ class CategoryController extends Controller
 
         //las dos categorias a las que se quiere acceder son correctas
         return view('categories.ccategory')->with('ccobject', $ccobject)->with('scobject', $scobject)
-            ->with('supercategories', $sc)->with('concretecategories', $cc)->with('products', $products);
+            ->with('supercategories', $sc)->with('concretecategories', $cc)->with('products', $products)->with('cart', $cart);
         
     }
 
     public function inicio_supercat($supercategory){
+        $cart = ShoppingCart::all();
         $sc = Supercategory::All();
         $cc = Concretecategory::All();
         $scobject = new Supercategory();
@@ -70,7 +74,7 @@ class CategoryController extends Controller
 
         //las dos categorias a las que se quiere acceder son correctas
         return view('categories.scategory')->with('scobject', $scobject)
-            ->with('supercategories', $sc)->with('concretecategories', $cc)->with('products', $products);
+            ->with('supercategories', $sc)->with('concretecategories', $cc)->with('products', $products)->with('cart', $cart);
     }
 
 }

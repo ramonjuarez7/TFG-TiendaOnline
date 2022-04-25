@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Búsqueda')
+@section('title', 'Butore Store')
 
 
 @section('content')
@@ -76,21 +76,31 @@
                     }
                 }
               }
-              function carro(){
-                return document.getElementById("cantidad").value;
-              }
             </script>
+            <?php 
+            $pedido = 0;
+              foreach($cart as $item){
+                if($item->id == $producto->id){
+                  $pedido += $item->qty;
+                }
+              }
+            ?>
           <form action="/Carrito/{{ $producto->id }}">
             <div class="input-group">
               <button class="btn btn btn-light" type="button" id="menos" onclick="javascript: contadormenos()">-</button>
               <input id="cantidad" name="cantidad" type="text" style="text-align: center;width : 50px; heigth : 50px;" value="1" readonly>
-              <button class="btn btn btn-light" type="button" id="mas" onclick="javascript: contadormas({{ $producto->Stock }})">+</button>
+              <button class="btn btn btn-light" type="button" id="mas" onclick="javascript: contadormas({{ $producto->Maximo_pedido - $pedido }})">+</button>
             </div>
             <div>
             &nbsp
             </div>           
             <div>
+              @if($producto->Maximo_pedido - $pedido > 0)
               <button type="submit" class="btn btn-primary">Añadir al carro</button>
+              @else
+              <button type="submit" class="btn btn-primary" disabled>Añadir al carro</button>
+              <p class="text-danger">Ya has incluido en tu carrito el máximo permitido de este producto.</p>
+              @endif
             </div>
           </form>
       

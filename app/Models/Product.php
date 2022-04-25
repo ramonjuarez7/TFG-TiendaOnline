@@ -16,7 +16,7 @@ class Product extends Model
     }
 
     public static function filterAndPaginate($nombre){
-        return Product::Nombre($nombre)->orderBy('id','DESC')->paginate(12);
+        return Product::Nombre($nombre)->orderBy('id','DESC')->paginate(100);
     }
 
     public function orders(){
