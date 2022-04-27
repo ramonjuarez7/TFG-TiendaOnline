@@ -158,13 +158,12 @@
           <h6 class="title">Usuario</h6>
           <ul class="list-unstyled">
             @guest
-            <li> <a href="#"> Iniciar Sesión </a></li>
-            <li> <a href="#"> Registro </a></li>
+            <li> <a href="/Login"> Iniciar Sesión </a></li>
+            <li> <a href="/Registro"> Registro </a></li>
             @else
-            <li> <a href="#"> Perfil </a></li>
-            <li> <a href="#"> Mis Pedidos </a></li>
+            <li> <a href="/Perfil"> Perfil </a></li>
+            <li> <a href="/Pedidos"> Mis Pedidos </a></li>
             <li> <a href="#"> Mis cupones </a></li>
-            <li> <a href="#"> Ajustes </a></li>
             @endguest
           </ul>
         </aside>
@@ -174,7 +173,6 @@
             <li><a href="#"> <i class="fab fa-facebook"></i> Facebook </a></li>
             <li><a href="#"> <i class="fab fa-twitter"></i> Twitter </a></li>
             <li><a href="#"> <i class="fab fa-instagram"></i> Instagram </a></li>
-            <li><a href="#"> <i class="fab fa-youtube"></i> Youtube </a></li>
           </ul>
         </aside>
       </div> <!-- row.// -->

@@ -63,10 +63,10 @@
                         </p>
                     </div>
                     <div class='col-2 col-lg-1 col-md-1 col-sm-1'>
-                        <p> " . $item->price . "€ </p>
+                        <p> " . sprintf('%.2f',$item->price) . "€ </p>
                     </div>
                     <div class='col-2 col-lg-1 col-md-1 col-sm-1'>
-                        <p><strong>" . $item->total . "€</strong> </p>
+                        <p><strong>" . sprintf('%.2f',$item->total) . "€</strong> </p>
                     </div>
                 </div>
                 ";
@@ -87,7 +87,7 @@
             <div class='col col-lg-10 '>
             </div>
             <div class='col-auto'>
-                Precio total: <strong>" . $sumatotal . " €</strong> 
+                Precio total: <strong>" . sprintf('%.2f',$sumatotal) . " €</strong> 
             </div>
         </div>"
         ;

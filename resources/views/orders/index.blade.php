@@ -53,9 +53,9 @@
                                     <th scope="row">{{ $prod->Linea }}</th>
                                     <td>{{ $p->Nombre }}</td>
                                     <td>{{ $prod->Cantidad }}</td>
-                                    <td>{{ $p->Precio_individual }}€</td>
-                                    <td>{{ $prod->Descuento }}€</td>
-                                    <td>{{ $prod->Precio }}€</td>
+                                    <td>{{ sprintf('%.2f',$p->Precio_individual) }}€</td>
+                                    <td>{{ sprintf('%.2f',$prod->Descuento) }}€</td>
+                                    <td>{{ sprintf('%.2f',$prod->Precio) }}€</td>
                                 </tr>
                                 @endforeach
                                 <tr>
@@ -65,7 +65,7 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td><strong>{{ $ord->Precio_total }}€</strong></td>
+                                    <td><strong>{{ sprintf('%.2f',$ord->Precio_total) }}€</strong></td>
                                 </tr>
                                 </tbody>
                             </table>

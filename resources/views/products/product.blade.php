@@ -28,21 +28,21 @@
         <a><strong>Información:</strong> {{ $producto->Informacion }} </a>
       </div>
       <div>
-        <a><strong>Precio:</strong> {{ $producto->Precio_individual }}€ </a>
+        <a><strong>Precio:</strong> {{ sprintf('%.2f',$producto->Precio_individual) }}€ </a>
       </div>
       @if($producto->medicion)
         <div>
             <a><strong>Peso:</strong> {{ $producto->Peso_volumen }}Kg </a>
         </div>
         <div>
-            <a><strong>El kilo sale a:</strong> {{ $producto->Precio_peso_volumen }}€ </a>
+            <a><strong>El kilo sale a:</strong> {{ sprintf('%.2f',$producto->Precio_peso_volumen) }}€ </a>
         </div>
         @else
         <div>
             <a><strong>Volumen:</strong> {{ $producto->Peso_volumen }}L </a>
         </div>
         <div>
-            <a><strong>El litro sale a:</strong> {{ $producto->Precio_peso_volumen }}€ </a>
+            <a><strong>El litro sale a:</strong> {{ sprintf('%.2f',$producto->Precio_peso_volumen) }}€ </a>
         </div>
         @endif
       <div>

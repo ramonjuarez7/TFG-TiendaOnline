@@ -19,7 +19,7 @@
       <a href="{{ url('/Producto/'. $prod->id) }}" class="img-wrap"> <img src={{ $prod->Imagen }}> </a>
       <figcaption class="info-wrap">
         <a href="{{ url('/Producto/'. $prod->id) }}" class="title">{{ $prod->Nombre }}</a>
-        <div class="price mt-1">{{ $prod->Precio_individual }}€</div> <!-- price-wrap.// -->
+        <div class="price mt-1">{{ sprintf('%.2f',$prod->Precio_individual) }}€</div> <!-- price-wrap.// -->
       </figcaption>
     </div>
   </div>
