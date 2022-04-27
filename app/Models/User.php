@@ -12,10 +12,14 @@ class User extends Authenticatable
     use HasFactory;
     
     public function orders(){
-        return $this->hasMany('App\Order');
+        return $this->hasMany('App\Models\Order');
     }
 
     public function coupons(){
-        return $this->belongsToMany('App\Coupon');
+        return $this->belongsToMany('App\Models\Coupon');
+    }
+
+    public function addCoupon($coupon, $qty){
+        $coupon->users()->attach($this->id,['Cantidad' => $qty]);
     }
 }

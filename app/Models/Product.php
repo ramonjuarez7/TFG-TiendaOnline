@@ -20,14 +20,14 @@ class Product extends Model
     }
 
     public function orders(){
-        return $this->belongsToMany('App\Order');
+        return $this->belongsToMany('App\Models\Order');
     }
 
     public function concretecategory(){
-        return $this->belongsTo('App\Concretecategory');
+        return $this->belongsTo('App\Models\Concretecategory');
     }
 
     public function coupons(){
-        return $this->hasMany('App\Coupons');
+        return $this->hasMany('App\Models\Coupon');
     }
 }

@@ -8,16 +8,15 @@
         {{ $mensaje }}
     </div>
     @endif
+<div class="container">
 
     <h1 style="text-align:center;" class="display-4">Tu cesta</h1>
     <!-- -------------- -->
     <div class='row'>
-        <div class='col-2 col-lg-2 col-md-4 col-sm-5'>
-        </div>
         <div class='col-4 col-lg-3 col-md-4 col-sm-5'>
             Cesta
         </div>
-        <div class='col-2 col-lg-3 col-md-6 col-sm-5'>
+        <div class='col-2 col-lg-7 col-md-6 col-sm-5'>
         </div>
         <div class='col-2 col-lg-1 col-md-1 col-sm-1'>
             Precio
@@ -25,18 +24,13 @@
         <div class='col-2 col-lg-1 col-md-1 col-sm-1'>
             Total
         </div>
-        <div class='col-2 col-lg-1 col-md-1 col-sm-1'>
-            
-        </div>
+
     </div>
 
     <div class='row'>
-        <div class='col-2 col-lg-2 col-md-4 col-sm-5'>
-        </div>
-        <div class='col-4 col-lg-8 col-md-4 col-sm-5'>
+
+        <div class='col-4 col-lg-12 col-md-4 col-sm-5'>
             <hr style="border-top: 2px solid blue"></hr>
-        </div>
-        <div class='col-2 col-lg-2 col-md-4 col-sm-5'>
         </div>
     </div>  
     
@@ -51,12 +45,10 @@
                 $sumatotal += $item->total;
                 echo" 
                 <div class='row'>
-                <div class='col-2 col-lg-2 col-md-4 col-sm-5'>
-                </div>
                     <div class='col-4 col-lg-2 col-md-4 col-sm-5'>
                         <img style='height:200px;max-width:100%;' src=\"$producto->Imagen\" alt='" . $producto->Nombre . "'>
                     </div>
-                    <div class='col col-lg-4 col-md-6 col-sm-5'>
+                    <div class='col col-lg-8 col-md-6 col-sm-5'>
                         <p style='font-size:30px'><a href='" . url('/Producto/' . $item->id) ." '><strong>" . $item->name . "</strong></a>
                         </p>
                         <p>" . $producto->Informacion . "</p> 
@@ -81,20 +73,18 @@
                 echo"
 
         <div class='row'>
-            <div class='col-2 col-lg-2 col-md-4 col-sm-5'>
-            </div>
-            <div class='col-4 col-lg-8 col-md-4 col-sm-5'>
+
+            <div class='col-4 col-lg-12 col-md-4 col-sm-5'>
                 <hr style='border-top: 2px solid blue'></hr>
             </div>
-            <div class='col-2 col-lg-2 col-md-4 col-sm-5'>
-            </div>
+
         </div>"
         ;
             }
         echo"
 
         <div class='row'>
-            <div class='col col-lg-9 '>
+            <div class='col col-lg-10 '>
             </div>
             <div class='col-auto'>
                 Precio total: <strong>" . $sumatotal . " €</strong> 
@@ -107,7 +97,7 @@
     ?>
 
     <div class="row mt-4">
-        <div class='col-2 col-lg-9 col-md-1 col-sm-1'>
+        <div class='col-2 col-lg-10 col-md-1 col-sm-1'>
             
         </div>
         <div class="col-2">
@@ -119,4 +109,5 @@
     <div>
     &nbsp
     </div>
+</div>
 @endsection

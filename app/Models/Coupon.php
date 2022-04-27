@@ -10,10 +10,10 @@ class Coupon extends Model
     use HasFactory;
 
     public function users(){
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\Models\User');
     }
 
     public function product(){
-        return $this->belongsTo('App\Product');
+        return $this->belongsTo('App\Models\Product');
     }
 }

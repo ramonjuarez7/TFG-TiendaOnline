@@ -17,7 +17,6 @@ return new class extends Migration
             $table->bigIncrements('id');    
             $table->unsignedBigInteger('product_id');
             $table->float('Descuento',4,2);
-            $table->integer('Cantidad');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products');

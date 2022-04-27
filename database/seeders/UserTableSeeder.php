@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Coupon;
 
 class UserTableSeeder extends Seeder
 {
@@ -31,6 +32,11 @@ class UserTableSeeder extends Seeder
         $user->Direccion_facturacion = "Calle Monseñor Espinosa 1A";
         $user->Privilegios = true;
         $user->save();
+
+        $user->addCoupon(Coupon::FindOrFail(1), 2);
+        $user->addCoupon(Coupon::FindOrFail(2), 2);
+        $user->addCoupon(Coupon::FindOrFail(3), 2);
+        $user->addCoupon(Coupon::FindOrFail(4), 2);
 
         $user = new User();
         $user->Email = "user1@butore.es";

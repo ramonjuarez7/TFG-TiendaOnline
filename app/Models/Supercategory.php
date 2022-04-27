@@ -10,7 +10,7 @@ class Supercategory extends Model
     use HasFactory;
 
     public function midcategories(){
-        return $this->hasMany('App\Concretecategory');
+        return $this->hasMany('App\Models\Concretecategory');
     }
 
     public static function getCategories(){

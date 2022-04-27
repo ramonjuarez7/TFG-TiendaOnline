@@ -10,10 +10,10 @@ class Concretecategory extends Model
     use HasFactory;
 
     public function products(){
-        return $this->hasMany('App\Product');
+        return $this->hasMany('App\Models\Product');
     }
 
     public function midcategory(){
-        return $this->belongsTo('App\Supercategory');
+        return $this->belongsTo('App\Models\Supercategory');
     }
 }

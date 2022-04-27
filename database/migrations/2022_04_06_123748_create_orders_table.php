@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
+            $table->date('Fecha')->nullable();
             $table->float('Precio_total',6,2);
             $table->boolean('Pagado')->default(false); // true = pagado, false = no pagado
             $table->boolean('Entregado')->default(false); //true = entregado, false = no entregado, solo puede ser true si pagado == true

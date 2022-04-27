@@ -13,7 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_order', function (Blueprint $table) {
+        Schema::create('order_product', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
             $table->integer('Linea');
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->float('Descuento',4,2); //resultado de cantidad x descuento si el usuario del pedido tiene un cupon
             $table->timestamps();
 
-            $table->primary('order_id','product_id');
+            $table->unique(['order_id','product_id']);
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('product_id')->references('id')->on('products');
         });
@@ -35,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_order');
+        Schema::dropIfExists('order_product');
     }
 };

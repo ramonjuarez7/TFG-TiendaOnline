@@ -102,7 +102,7 @@
   @elseif ($pest == "Direcciones")
   <div class="card-body">
   <div class="card" >
-        <h5 class="card-header">Datos Personales</h5> 
+        <h5 class="card-header">Direcciones</h5> 
                 <div>
                 <p class="text-left"><Strong>&nbsp Dirección de envío: </strong> {{ $usuario->Direccion_envio }}</p>
                 </div>

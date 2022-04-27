@@ -49,6 +49,8 @@ Route::get('Perfil/Datos','UserController@datos');
 Route::get('Perfil/{pest}/Modificar/{target}','UserController@modificar');
 Route::post('Perfil/{pest}/Modificar/{target}','UserController@modificarPost');
 
+Route::get('Pedidos','OrderController@index');
+
 
 
 
