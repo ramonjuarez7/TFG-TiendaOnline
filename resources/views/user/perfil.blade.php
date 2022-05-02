@@ -65,8 +65,7 @@
       <a class="btn btn-outline-primary" href="/Perfil/Cuenta/Modificar/Email" role="button"><strong>Modificar Email</strong></a>
       &nbsp
       <a class="btn btn-outline-primary" href="/Perfil/Cuenta/Modificar/Password" role="button"><strong>Modificar Contraseña</strong></a>
-      &nbsp
-      <a class="btn btn-outline-danger" href="#" role="button"><strong>Borrar cuenta</strong></a>
+
 
       
   </div>
@@ -95,7 +94,7 @@
       &nbsp
     </div>
       <div>
-      <p class="text-left">*Si encuentra algún error en los datos personales póngase en contacto con nosotros.</p>
+      <p class="text-left">Si encuentra algún error en los datos personales o desea eliminar su cuenta, póngase en contacto con nosotros.</p>
     </div>
 
   </div>

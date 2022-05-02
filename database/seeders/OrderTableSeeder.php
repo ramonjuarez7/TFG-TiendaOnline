@@ -27,9 +27,9 @@ class OrderTableSeeder extends Seeder
         $order->Pagado = true;
         $order->Entregado = true;
         $order->save();
-        $order->addProduct(Product::findOrFail(1),3);
-        $order->addProduct(Product::findOrFail(2),2);
-        $order->addProduct(Product::findOrFail(3),5);
+        $order->addProduct(Product::findOrFail(1),3,0);
+        $order->addProduct(Product::findOrFail(2),2,0);
+        $order->addProduct(Product::findOrFail(3),5,0);
         $order->Precio_total = $order->calcularTotal();
         $order->save();
 
@@ -40,9 +40,9 @@ class OrderTableSeeder extends Seeder
         $order->Pagado = true;
         $order->Entregado = false;
         $order->save();
-        $order->addProduct(Product::findOrFail(1),1);
-        $order->addProduct(Product::findOrFail(2),6);
-        $order->addProduct(Product::findOrFail(3),2);
+        $order->addProduct(Product::findOrFail(1),1,0);
+        $order->addProduct(Product::findOrFail(2),6,0);
+        $order->addProduct(Product::findOrFail(3),2,0);
         $order->Precio_total = $order->calcularTotal();
         $order->save();
 
@@ -53,9 +53,9 @@ class OrderTableSeeder extends Seeder
         $order->Pagado = false;
         $order->Entregado = false;
         $order->save();
-        $order->addProduct(Product::findOrFail(1),7);
-        $order->addProduct(Product::findOrFail(2),1);
-        $order->addProduct(Product::findOrFail(3),4);
+        $order->addProduct(Product::findOrFail(1),7,0);
+        $order->addProduct(Product::findOrFail(2),1,0);
+        $order->addProduct(Product::findOrFail(3),4,0);
         $order->Precio_total = $order->calcularTotal();
         $order->save();
 
@@ -66,9 +66,9 @@ class OrderTableSeeder extends Seeder
         $order->Pagado = true;
         $order->Entregado = true;
         $order->save();
-        $order->addProduct(Product::findOrFail(1),3);
-        $order->addProduct(Product::findOrFail(2),2);
-        $order->addProduct(Product::findOrFail(3),5);
+        $order->addProduct(Product::findOrFail(1),3,0);
+        $order->addProduct(Product::findOrFail(2),2,0);
+        $order->addProduct(Product::findOrFail(3),5,0);
         $order->Precio_total = $order->calcularTotal();
         $order->save();
 
@@ -79,9 +79,9 @@ class OrderTableSeeder extends Seeder
         $order->Pagado = true;
         $order->Entregado = false;
         $order->save();
-        $order->addProduct(Product::findOrFail(1),1);
-        $order->addProduct(Product::findOrFail(2),6);
-        $order->addProduct(Product::findOrFail(3),2);
+        $order->addProduct(Product::findOrFail(1),1,0);
+        $order->addProduct(Product::findOrFail(2),6,0);
+        $order->addProduct(Product::findOrFail(3),2,0);
         $order->Precio_total = $order->calcularTotal();
         $order->save();
 
@@ -92,9 +92,9 @@ class OrderTableSeeder extends Seeder
         $order->Pagado = false;
         $order->Entregado = false;
         $order->save();
-        $order->addProduct(Product::findOrFail(1),7);
-        $order->addProduct(Product::findOrFail(2),1);
-        $order->addProduct(Product::findOrFail(3),4);
+        $order->addProduct(Product::findOrFail(1),7,0);
+        $order->addProduct(Product::findOrFail(2),1,0);
+        $order->addProduct(Product::findOrFail(3),4,0);
         $order->Precio_total = $order->calcularTotal();
         $order->save();
 

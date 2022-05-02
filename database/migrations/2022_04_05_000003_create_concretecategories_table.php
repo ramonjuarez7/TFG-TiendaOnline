@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('supercategory_id');
             $table->timestamps();
 
-            $table->foreign('supercategory_id')->references('id')->on('supercategories');
+            $table->foreign('supercategory_id')->references('id')->on('supercategories')->onDelete('cascade');
         });
     }
 

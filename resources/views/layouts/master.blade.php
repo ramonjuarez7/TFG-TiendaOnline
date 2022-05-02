@@ -90,7 +90,7 @@
             <a href="/Registro"> Registro</a>
             @else
             <a href="/Pedidos">Mis pedidos</a> |
-            <a href="#">Mis cupones</a> |
+            <a href="/Cupones">Mis cupones</a> |
             <a class="nav-item nav-link text-light" method='POST' tooltip="prueba" href="{{ url('/Logout') }}">
                 <i class="fas fa-sign-out-alt"> Cerrar Sesión</i>
             </a> 
@@ -163,7 +163,7 @@
             @else
             <li> <a href="/Perfil"> Perfil </a></li>
             <li> <a href="/Pedidos"> Mis Pedidos </a></li>
-            <li> <a href="#"> Mis cupones </a></li>
+            <li> <a href="/Cupones"> Mis cupones </a></li>
             @endguest
           </ul>
         </aside>

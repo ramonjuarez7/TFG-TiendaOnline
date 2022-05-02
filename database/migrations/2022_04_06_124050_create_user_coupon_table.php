@@ -21,8 +21,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unique(['user_id','coupon_id']);
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('coupon_id')->references('id')->on('coupons');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('coupon_id')->references('id')->on('coupons')->onDelete('cascade');
         });
     }
 

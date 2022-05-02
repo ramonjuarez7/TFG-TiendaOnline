@@ -18,11 +18,12 @@ Route::get('index', 'MasterPageController@inicio');
 
 Route::get('Carrito/Delete/{rawId}', 'CarritoController@delete');
 Route::get('Carrito/Add/{rawId}', 'CarritoController@add');
+Route::get('Carrito/Eliminar', 'CarritoController@eliminarCarrito');
 
 Route::get('Carrito', 'CarritoController@index');
-Route::get('Carrito/Finish', 'CarritoController@finish');
-Route::get('Carrito/{id}/{cantidad}', 'ProductoController@addToCart');
+Route::get('Carrito/{id}/{cantidad}', 'ProductoController@addToCartWithQuantity');
 Route::get('Carrito/{id}', 'ProductoController@addToCart');
+
 
 
 Route::get('Productos/{supercategory}/{midcategory}','CategoryController@inicio_concretecat');
@@ -50,8 +51,13 @@ Route::get('Perfil/{pest}/Modificar/{target}','UserController@modificar');
 Route::post('Perfil/{pest}/Modificar/{target}','UserController@modificarPost');
 
 Route::get('Pedidos','OrderController@index');
+Route::get('Pedidos/Finalizar','OrderController@finalizar');
+Route::get('Cupones','CouponController@index');
+Route::get('Pedidos/Finalizar/Confirmar','OrderController@finish');
+Route::get('Pedidos/Anular/{id}','OrderController@anular');
 
-
+Route::get('Pago/{id}','HomeController@pago');
+Route::get('Pagado/{id}','OrderController@pagado');
 
 
 Auth::routes();

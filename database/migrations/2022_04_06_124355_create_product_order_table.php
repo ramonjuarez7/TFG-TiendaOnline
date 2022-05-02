@@ -24,8 +24,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unique(['order_id','product_id']);
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

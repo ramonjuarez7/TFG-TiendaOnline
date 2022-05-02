@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('Entregado')->default(false); //true = entregado, false = no entregado, solo puede ser true si pagado == true
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

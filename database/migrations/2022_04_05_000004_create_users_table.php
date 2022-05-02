@@ -27,6 +27,17 @@ return new class extends Migration
             $table->string('Direccion_envio');
             $table->string('Direccion_facturacion');
             $table->boolean('Privilegios')->default(false);
+
+            /*
+            $table->tinyInteger('stripe_active')->default(0);
+			$table->string('stripe_id')->nullable();
+			$table->string('stripe_subscription')->nullable();
+			$table->string('stripe_plan', 100)->nullable();
+			$table->string('last_four', 4)->nullable();
+			$table->timestamp('trial_ends_at')->nullable();
+			$table->timestamp('subscription_ends_at')->nullable();
+            */
+
             $table->timestamps();
         });
     }

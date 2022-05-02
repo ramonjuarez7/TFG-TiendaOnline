@@ -30,4 +30,32 @@ class Product extends Model
     public function coupons(){
         return $this->hasMany('App\Models\Coupon');
     }
+
+    public static function descuentoTotal($id, $cantidad, $usuario){
+        $usercup = \DB::select('SELECT * FROM coupon_user WHERE user_id ='.$usuario->id);
+        $products = \App\Models\Product::All();
+        $cup = \App\Models\Coupon::All();
+        $descuento = 0;
+        $valor = 0;
+        foreach($usercup as $uc){ 
+            foreach($cup as $c){
+                if($c->id == $uc->coupon_id){
+                    foreach($products as $p){
+                        if($c->product_id == $id){
+                            $descuento = $uc->Cantidad;
+                            $valor = $c->Descuento;
+                        } 
+                    }
+                } 
+                
+            }
+        }         
+        if($descuento > $cantidad){
+            $cantidad = $cantidad;
+        } else {
+            $cantidad = $descuento;
+        }
+
+        return $valor * $descuento;
+    }
 }

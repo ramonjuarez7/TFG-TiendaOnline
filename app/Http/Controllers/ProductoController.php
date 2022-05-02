@@ -27,11 +27,50 @@ class ProductoController extends Controller
         $producto = Product::findOrFail($id);
         $cart = ShoppingCart::all();
 
-        if($producto->Stock > 0){
-            $cart = ShoppingCart::add($id, $producto->Nombre, $cantidad->get('cantidad') , $producto->Precio_individual);
-            return Redirect::to('Carrito');
+        if(\Auth::guest()){
+            if($producto->Stock > 0){
+                $cart = ShoppingCart::add($id, $producto->Nombre, $cantidad->get('cantidad') , $producto->Precio_individual, ['Descuento' => 0]);
+                return Redirect::to('Carrito');
+            }
+            
+        } else {
+            $email = \Auth::user()->Email;
+            $usuario = \App\Models\User::where('Email',$email)->firstOrFail();
+
+            $descuentototal = Product::descuentoTotal($id, $cantidad->get('cantidad'), $usuario);
+
+            if($producto->Stock > 0){
+                $cart = ShoppingCart::add($id, $producto->Nombre, $cantidad->get('cantidad') , $producto->Precio_individual, ['Descuento' => $descuentototal]);
+                return Redirect::to('Carrito');
+            }
         }
             return Redirect::to('Producto/' . $id);
     }
+
+    public function addToCartWithQuantity($id, $cantidad){
+        $producto = Product::findOrFail($id);
+        $cart = ShoppingCart::all();
+
+        if(\Auth::guest()){
+            if($producto->Stock > 0){
+                $cart = ShoppingCart::add($id, $producto->Nombre, $cantidad , $producto->Precio_individual, ['Descuento' => 0]);
+                return Redirect::to('Carrito');
+            }
+            
+        } else {
+            $email = \Auth::user()->Email;
+            $usuario = \App\Models\User::where('Email',$email)->firstOrFail();
+
+            $descuentototal = Product::descuentoTotal($id, $cantidad, $usuario);
+
+            if($producto->Stock > 0){
+                $cart = ShoppingCart::add($id, $producto->Nombre, $cantidad , $producto->Precio_individual, ['Descuento' => $descuentototal]);
+                return Redirect::to('Carrito');
+            }
+        }
+        return Redirect::to('Producto/' . $id);
+    }
+
+    
 }
 

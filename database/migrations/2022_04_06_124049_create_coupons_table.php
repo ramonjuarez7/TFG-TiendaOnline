@@ -19,7 +19,7 @@ return new class extends Migration
             $table->float('Descuento',4,2);
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

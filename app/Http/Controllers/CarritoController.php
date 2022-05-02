@@ -33,6 +33,21 @@ class CarritoController extends Controller
         ->with('supercategories', $sc)->with('concretecategories', $cc);
     }
 
+    public function eliminarCarrito(){
+        ShoppingCart::destroy();
+        $sc = Supercategory::All();
+        $cc = Concretecategory::All();
+        $cart = ShoppingCart::All();
+        $productos = array();
+        foreach($cart as $pedidoproducto){
+            $producto = Product::findOrFail($pedidoproducto->id);
+
+            array_push($productos, $producto, $pedidoproducto->id);
+        }
+        return Redirect::to('/Carrito')->with('cart', $cart)->with('productos', $productos)
+        ->with('supercategories', $sc)->with('concretecategories', $cc);
+    }
+
     public function delete($rawId){
         $sc = Supercategory::All();
         $cc = Concretecategory::All();
@@ -40,8 +55,15 @@ class CarritoController extends Controller
         $prod = Product::findOrFail($item->id);
         $prod->save();
 
-        ShoppingCart::update($rawId, $item->qty-1);
-            
+        if(\Auth::guest()){
+            ShoppingCart::update($rawId, $item->qty-1, ['Descuento' => 0]);
+        } else {
+            $email = \Auth::user()->Email;
+            $usuario = \App\Models\User::where('Email',$email)->firstOrFail();
+            $descuentototal = Product::descuentoTotal($item->id, $item->qty-1, $usuario);
+            ShoppingCart::update($rawId, $item->qty-1, ['Descuento' => $descuentototal]);
+        }
+                
         $cart = ShoppingCart::All();
 
         $productos = array();
@@ -62,7 +84,15 @@ class CarritoController extends Controller
         $cc = Concretecategory::All();
         $item = ShoppingCart::get($rawId);
         $prod = Product::findOrFail($item->id);
-        ShoppingCart::update($rawId, $item->qty+1);
+        
+        if(\Auth::guest()){
+            ShoppingCart::update($rawId, $item->qty+1, ['Descuento' => 0]);
+        } else {
+            $email = \Auth::user()->Email;
+            $usuario = \App\Models\User::where('Email',$email)->firstOrFail();
+            $descuentototal = Product::descuentoTotal($item->id, $item->qty+1, $usuario);
+            ShoppingCart::update($rawId, $item->qty+1, ['Descuento' => $descuentototal]);
+        }
 
         $cart = ShoppingCart::All();
         $productos = array();

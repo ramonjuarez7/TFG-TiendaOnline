@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Supercategory;
 use App\Models\Concretecategory;
 use App\Models\User;
+use App\Models\Product;
 use App\Mail\RegistroCompleto;
 use Illuminate\Support\Facades\Mail;
 
@@ -56,9 +57,9 @@ class LoginController extends Controller
     }
 
     public function loginPost(Request $request){
-        $cart = ShoppingCart::all();
         $sc = Supercategory::All();
         $cc = Concretecategory::All();
+        $cart = ShoppingCart::all();
 
         $usuario_exist = \DB::table('users')
             ->where('Email', '=',$request->email)
@@ -71,10 +72,12 @@ class LoginController extends Controller
                 ->where('Password',$request->passwd)    
                 ->firstOrFail();
 
+            \App\Models\Order::actualizarDescuentosCarritoLogin($usuario);
             Auth::login($usuario);
             return redirect('/Perfil');  
         }else{
             $e = true;
+            
             return view('auth.login')->with('credentialerror', $e)->with('supercategories', $sc)
                 ->with('concretecategories', $cc)->with('cart', $cart);;
         }
