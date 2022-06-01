@@ -32,6 +32,7 @@ class ProductTableSeeder extends Seeder
             $product->concretecategory_id = 1;
             $product->Stock=10;
             $product->Maximo_pedido=5;
+            $product->Novedad = false;
             $product->save();
         }
 
@@ -47,6 +48,22 @@ class ProductTableSeeder extends Seeder
             $product->concretecategory_id = 1;
             $product->Stock=10;
             $product->Maximo_pedido=5;
+            $product->Novedad = true;
+            $product->save();
+
+            $product = new Product();
+            $product->Nombre = "AbTomates";
+            $product->Imagen = '/images/products/1.jpg';
+            $product->Informacion = "Tomates";
+            $product->Medicion = true;
+            $product->Peso_volumen = 1;
+            $product->Precio_individual = 0.23;
+            $product->Precio_peso_volumen = 1.34;
+            $product->Codigo_barras = 5454545;
+            $product->concretecategory_id = 17;
+            $product->Stock=12;
+            $product->Maximo_pedido=5;
+            $product->Novedad = true;
             $product->save();
 
 

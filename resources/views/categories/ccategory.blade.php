@@ -10,8 +10,12 @@
 <div class="container">
 <header class="section-heading">
 <?php $url1 = "Productos/$scobject->Nombre"?>
-    <a class="link" href="{{ url($url1) }}">{{ $scobject->Nombre }}</a>&nbsp→&nbsp<a class="text">{{ $ccobject->Nombre }}</a>
-  <h3 class="section-title">{{ $ccobject->Nombre }}</h3>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ url($url1) }}">{{ $scobject->Nombre }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ $ccobject->Nombre }}</li>
+  </ol>
+</nav>
 </header><!-- sect-heading -->
 
 <div class="row">

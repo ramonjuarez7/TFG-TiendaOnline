@@ -70,7 +70,8 @@ class Order extends Model
         $user = \App\Models\User::findOrFail($id);
 
         $Pedido->user_id = $user->id;
-        
+
+        $coupons = \DB::select('SELECT * FROM coupon_user WHERE user_id ='.$user->id);
 
         $cart = ShoppingCart::All();
         $Pedido->Precio_total = 0;
@@ -83,6 +84,20 @@ class Order extends Model
             $Pedido->Entregado = false;
             //$Pedido->Fecha = \Carbon::now();
             $Pedido->addProduct($product, $item->qty, $item->Descuento);
+
+            foreach($coupons as $coup){
+                $c = Coupon::findOrFail($coup->coupon_id);
+                if($c->product_id == $item->id){
+                    if($coup->Cantidad <= $item->qty){
+                        $c->users()->detach($user->id);
+                    } else {
+                        $aux = $coup->Cantidad - $item->qty;
+                        $c->users()->detach($user->id);
+                        $c->users()->attach($user->id, ['Cantidad' => $aux ]);
+                    }
+                }
+            }
+
         }
         
         if ($rollback) {

@@ -35,11 +35,20 @@
 <div class="container">
     <ul class="navbar-nav d-none d-md-flex mr-auto">
     <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
-    <li class="nav-item"><a class="nav-link" href="#">Envíos</a></li>
-    <li class="nav-item"><a class="nav-link" href="#">Pago</a></li>
+    @guest
+
+    @else
+    <?php $email = \Auth::user()->Email;
+          $usuario = \App\Models\User::where('Email',$email)->firstOrFail(); 
+    ?>
+      @if($usuario->Privilegios == true)
+      <li class="nav-item"><a class="nav-link" href="/Administracion">Panel de Administrador</a></li>
+      @endif
+
+    @endguest
     </ul>
     <ul class="navbar-nav">
-    <li  class="nav-item"><a href="#" class="nav-link"> Info: rjc13@alu.ua.es </a></li>
+    <li  class="nav-item"><a href="/Contact" class="nav-link"> Info: rjc13@alu.ua.es </a></li>
 
   </ul> <!-- list-inline //  -->
   

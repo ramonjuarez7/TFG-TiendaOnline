@@ -133,4 +133,15 @@ class UserController extends Controller
     }
 
     
+
+    public function verUsuario($id){
+        $usuario = Usuario::where('id',$id)->firstOrFail();
+        $pedidos = Pedido::where('usuario', $usuario->email)->get();
+        $direcciones = Direccion::where('usuario', $usuario->email)->get();
+        $tarjetas = Tarjeta::where('usuario', $usuario->email)->get();
+
+        return view('usuario.perfil')->with('usuario', $usuario)->with('pedidos', $pedidos)->with('direcciones', $direcciones)->with('tarjetas', $tarjetas); 
+    }
+
+    
 }

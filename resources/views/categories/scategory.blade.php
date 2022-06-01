@@ -10,7 +10,11 @@
 <div class="container">
 <header class="section-heading">
 <?php $url1 = "Productos/$scobject->Nombre"?>
-  <h3 class="section-title">{{ $scobject->Nombre }}</h3>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">{{ $scobject->Nombre }}</li>
+  </ol>
+</nav>
 </header><!-- sect-heading -->
 <div class="row">
 @foreach($products as $prod)

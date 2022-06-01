@@ -25,10 +25,11 @@ return new class extends Migration
             $table->string('Codigo_barras')->unique();
             $table->integer('Stock');
             $table->integer('Maximo_pedido');
-            $table->unsignedBigInteger('concretecategory_id');
+            $table->boolean('Novedad');
+            $table->unsignedBigInteger('concretecategory_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('concretecategory_id')->references('id')->on('concretecategories')->onDelete('cascade');
+            $table->foreign('concretecategory_id')->references('id')->on('concretecategories')->onDelete('set null');
         });
     }
 

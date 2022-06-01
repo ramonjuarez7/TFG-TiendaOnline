@@ -54,15 +54,25 @@
                                 <tbody>
                                     <?php $datos = \DB::select('SELECT * FROM order_product WHERE order_id ='. $ord->id) ?>
                                     @foreach($datos as $prod)
-                                <tr>
-                                    <?php $p = App\Models\Product::findOrFail($prod->product_id) ?>
-                                    <th scope="row">{{ $prod->Linea }}</th>
-                                    <td>{{ $p->Nombre }}</td>
-                                    <td>{{ $prod->Cantidad }}</td>
-                                    <td>{{ sprintf('%.2f',$p->Precio_individual) }}€</td>
-                                    <td>{{ sprintf('%.2f',$prod->Descuento) }}€</td>
-                                    <td>{{ sprintf('%.2f',$prod->Precio * $prod->Cantidad - $prod->Descuento) }}€</td>
-                                </tr>
+                                        <tr>
+                                        @if($prod->product_id != null)
+                                            <?php $p = App\Models\Product::findOrFail($prod->product_id) ?>
+                                            <th scope="row">{{ $prod->Linea }}</th>
+                                            <td>{{ $p->Nombre }}</td>
+                                            <td>{{ $prod->Cantidad }}</td>
+                                            <td>{{ sprintf('%.2f',$p->Precio_individual) }}€</td>
+                                            <td>{{ sprintf('%.2f',$prod->Descuento) }}€</td>
+                                            <td>{{ sprintf('%.2f',$prod->Precio * $prod->Cantidad - $prod->Descuento) }}€</td>
+                                        @else
+                                            <th scope="row">{{ $prod->Linea }}</th>
+                                            <td>NULL</td>
+                                            <td>{{ $prod->Cantidad }}</td>
+                                            <td>NULL</td>
+                                            <td>{{ sprintf('%.2f',$prod->Descuento) }}€</td>
+                                            <td>{{ sprintf('%.2f',$prod->Precio * $prod->Cantidad - $prod->Descuento) }}€</td>
+                                        @endif
+                                        </tr>
+                                        
                                 @endforeach
                                 <tr>
                                     <?php $p = App\Models\Product::findOrFail($prod->product_id) ?>
@@ -154,6 +164,7 @@
                                         <?php $datos = \DB::select('SELECT * FROM order_product WHERE order_id ='. $ord->id) ?>
                                         @foreach($datos as $prod)
                                     <tr>
+                                        @if($prod->product_id != null)
                                         <?php $p = App\Models\Product::findOrFail($prod->product_id) ?>
                                         <th scope="row">{{ $prod->Linea }}</th>
                                         <td>{{ $p->Nombre }}</td>
@@ -161,6 +172,14 @@
                                         <td>{{ sprintf('%.2f',$p->Precio_individual) }}€</td>
                                         <td>{{ sprintf('%.2f',$prod->Descuento) }}€</td>
                                         <td>{{ sprintf('%.2f',$prod->Precio * $prod->Cantidad - $prod->Descuento) }}€</td>
+                                        @else
+                                        <th scope="row">{{ $prod->Linea }}</th>
+                                        <td>NULL</td>
+                                        <td>{{ $prod->Cantidad }}</td>
+                                        <td>NULL</td>
+                                        <td>{{ sprintf('%.2f',$prod->Descuento) }}€</td>
+                                        <td>{{ sprintf('%.2f',$prod->Precio * $prod->Cantidad - $prod->Descuento) }}€</td>
+                                        @endif
                                     </tr>
                                     @endforeach
                                     <tr>
@@ -202,5 +221,9 @@
     </div>
     @endif
   @endforeach
+  <p>NOTA: El precio por unidad de producto puede variar, pero usted pagará el precio del producto en el momento de la confirmación del pedido.</p>
+            <div>
+            &nbsp
+            </div>
 </div> <!-- container //  -->
 @endsection

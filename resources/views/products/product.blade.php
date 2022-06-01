@@ -8,11 +8,22 @@
 <section class="section-content">
 <div class="container">
 <header class="section-heading">
-    <?php $url1 = "Productos/$scat->Nombre"?>
-    <?php $url2 = "Productos/$scat->Nombre/$ccat->Nombre"?>
-    <a class="link" href="{{ url($url1) }}">{{ $scat->Nombre }}</a>&nbsp→&nbsp<a class="link" href="{{ url($url2) }}">{{ $ccat->Nombre }}</a>
-    <h3 class="section-title">{{ $producto->Nombre }}</h3>      
-    <a> </a>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+      @if($scat == null)
+        @if($ccat != null)
+          <li class="breadcrumb-item">{{ $ccat->Nombre }}</li>
+        @endif
+      @elseif ($ccat == null)
+        <li class="breadcrumb-item">Este producto no tiene categoría</li>
+      @else
+        <?php $url1 = "Productos/$scat->Nombre"?>
+        <?php $url2 = "Productos/$scat->Nombre/$ccat->Nombre"?>
+        <li class="breadcrumb-item"><a href="{{ url($url1) }}">{{ $scat->Nombre }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ url($url2) }}">{{ $ccat->Nombre }}</a></li>
+      @endif
+      </ol>
+    </nav>  
 </header><!-- sect-heading -->
 <div class="row">
   <div class="col-md-3">

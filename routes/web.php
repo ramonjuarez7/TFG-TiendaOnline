@@ -58,6 +58,14 @@ Route::get('Pedidos/Anular/{id}','OrderController@anular');
 
 Route::get('Pago/{id}','HomeController@pago');
 Route::get('Pagado/{id}','OrderController@pagado');
+Route::get('Administracion','AdminController@index');
+Route::get('Administracion/{cat}','AdminController@categoria');
+
+Route::get('Administracion/{cat}/{filtro}','AdminController@filtro');
+Route::get('Administracion/{cat}/Elemento/{id}','AdminController@detalles');
+Route::get('Administracion/{cat}/Elemento/Borrar/{id}','AdminController@borrar');
+Route::post('Administracion/{cat}/Elemento/{id}','AdminController@modificar');
+Route::post('Administracion/{cat}/Add/Elemento/{id}','AdminController@addcoupon');
 
 
 Auth::routes();

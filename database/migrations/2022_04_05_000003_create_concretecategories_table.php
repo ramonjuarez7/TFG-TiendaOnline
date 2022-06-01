@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('concretecategories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('Nombre');
-            $table->unsignedBigInteger('supercategory_id');
+            $table->unsignedBigInteger('supercategory_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('supercategory_id')->references('id')->on('supercategories')->onDelete('cascade');
+            $table->foreign('supercategory_id')->references('id')->on('supercategories')->onDelete('set null');
         });
     }
 

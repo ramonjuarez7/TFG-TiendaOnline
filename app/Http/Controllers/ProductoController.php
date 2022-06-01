@@ -17,8 +17,20 @@ class ProductoController extends Controller
         $sc = Supercategory::All();
         $cc = Concretecategory::All();
         $producto = Product::findOrFail($id);
-        $concretcat = Concretecategory::findOrFail($producto->concretecategory_id);
-        $supercat = Supercategory::findOrFail($concretcat->supercategory_id);
+        if($producto->concretecategory_id != null){
+            $concretcat = Concretecategory::findOrFail($producto->concretecategory_id);
+            if($concretcat->supercategory_id != null){
+                $supercat = Supercategory::findOrFail($concretcat->supercategory_id);
+            } else {
+                $supercat = null;
+            }
+        } else {
+            $concretcat = null;
+            $supercat = null;
+        }
+        
+        
+
         return view('products.product')->with('supercategories', $sc)->with('concretecategories', $cc)
             ->with('producto', $producto)->with('ccat', $concretcat)->with('scat', $supercat)->with('cart', $cart);
     }
