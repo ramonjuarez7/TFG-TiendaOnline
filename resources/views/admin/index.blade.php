@@ -135,7 +135,7 @@ Error 403 Forbidden.
         <div>
       &nbsp
     </div>
-      <a class="btn btn-outline-primary" href="/Perfil/Cuenta/Modificar/Email" role="button"><strong>Añadir Categoría</strong></a>
+      <a class="btn btn-outline-primary" href="/Administracion/Categorias/Crear" role="button"><strong>Añadir Categoría</strong></a>
       &nbsp
       </div>
 
@@ -174,7 +174,7 @@ Error 403 Forbidden.
         <div>
       &nbsp
     </div>
-      <a class="btn btn-outline-primary" href="/Perfil/Cuenta/Modificar/Password" role="button"><strong>Añadir Subcategoría</strong></a>
+      <a class="btn btn-outline-primary" href="/Administracion/Subcategorias/Crear" role="button"><strong>Añadir Subcategoría</strong></a>
       </div>
 
 
@@ -216,7 +216,7 @@ Error 403 Forbidden.
         <div>
         &nbsp
         </div>
-          <a class="btn btn-outline-primary" href="/Perfil/Direcciones/Modificar/Envio" role="button"><strong>Añadir Producto</strong></a>
+          <a class="btn btn-outline-primary" href="/Administracion/Usuarios/Crear" role="button"><strong>Añadir Usuario</strong></a>
         </div>
         
     </div>
@@ -273,7 +273,7 @@ Error 403 Forbidden.
       <div>
       &nbsp
         </div>
-      <a class="btn btn-outline-primary" href="/Perfil/Direcciones/Modificar/Envio" role="button"><strong>Añadir Producto</strong></a>
+      <a class="btn btn-outline-primary" href="/Administracion/Productos/Crear" role="button"><strong>Añadir Producto</strong></a>
 </div>
 @elseif ($pest == "Cupones")
   <div class="card-body">
@@ -304,7 +304,7 @@ Error 403 Forbidden.
       <div>
       &nbsp
         </div>
-      <a class="btn btn-outline-primary" href="/Perfil/Direcciones/Modificar/Envio" role="button"><strong>Añadir Cupón</strong></a>
+      <a class="btn btn-outline-primary" href="/Administracion/Cupones/Crear" role="button"><strong>Añadir Cupón</strong></a>
 </div>
   @endif
 </div>

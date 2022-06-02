@@ -61,11 +61,15 @@ Route::get('Pagado/{id}','OrderController@pagado');
 Route::get('Administracion','AdminController@index');
 Route::get('Administracion/{cat}','AdminController@categoria');
 
+
+Route::get('Administracion/{cat}/Crear','AdminController@crearIndex');
+Route::post('Administracion/{cat}/Crear','AdminController@crear');
 Route::get('Administracion/{cat}/{filtro}','AdminController@filtro');
 Route::get('Administracion/{cat}/Elemento/{id}','AdminController@detalles');
 Route::get('Administracion/{cat}/Elemento/Borrar/{id}','AdminController@borrar');
 Route::post('Administracion/{cat}/Elemento/{id}','AdminController@modificar');
 Route::post('Administracion/{cat}/Add/Elemento/{id}','AdminController@addcoupon');
+
 
 
 Auth::routes();

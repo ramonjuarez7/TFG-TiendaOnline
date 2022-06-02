@@ -14,6 +14,7 @@ use App\ServiceLayer\Services;
 use Redirect;
 use ShoppingCart;
 use Auth;
+use Storage;
 
 class AdminController extends Controller
 {
@@ -120,7 +121,7 @@ class AdminController extends Controller
                     'tar5' => 'nullable|max:10',
                     'tar6' => 'nullable|numeric|digits:9|unique:users,telefono',
                     'tar7' => 'nullable|max:200',
-                    'tar7' => 'nullable|max:200',
+                    'tar8' => 'nullable|max:200',
                 ]);
                 $prod = \App\Models\User::findOrFail($id);
                 if($request->tar1 != null){
@@ -144,7 +145,7 @@ class AdminController extends Controller
                 if($request->tar7 != null){
                     $prod->Direccion_envio = $request->tar7;
                 }
-                if($request->tar7 != null){
+                if($request->tar8 != null){
                     $prod->Direccion_facturacion = $request->tar7;
                 }
                 $email = \Auth::user()->Email;
@@ -242,6 +243,109 @@ class AdminController extends Controller
             return redirect('Administracion/'.$cat.'/Elemento/'.$id);
         }
         
+    }
+
+    public function crearIndex($cat){
+        $cart = ShoppingCart::all();
+        $sc = Supercategory::All();
+        $cc = Concretecategory::All();
+        return view('admin.add')->with('supercategories', $sc)->with('concretecategories', $cc)
+        ->with('cart', $cart)->with('pest',$cat);
+    }
+
+    public function crear($cat, Request $request){
+        switch($cat){
+            case "Productos":
+                $request->validate([
+                    'tar1' => 'required|max:200',
+                    'tar2' => 'required|max:200',
+                    'tar3' => 'required|max:9',
+                    'tar4' => 'required|numeric',
+                    'tar5' => 'required|numeric',
+                    'tar6' => 'required|numeric',
+                    'tar7' => 'required|numeric',
+                ]);
+                $prod = new \App\Models\Product();
+                $prod->Nombre = $request->tar1;
+                $prod->Informacion = $request->tar2;
+                $prod->Peso_volumen = $request->tar3;
+                $prod->Precio_individual = $request->tar4;
+                $prod->Precio_peso_volumen = $request->tar5;
+                $prod->Stock = $request->tar6;
+                $prod->Maximo_pedido = $request->tar7;
+                $prod->Medicion = ($request->medicion == "option2");
+                $prod->Novedad = ($request->novedad == "option3");
+                $prod->concretecategory_id = $request->get('cat');
+                $prod->Imagen = "";
+                $prod->Codigo_barras = 0;
+                $prod->save();
+                $name = $prod->id.'.jpg';
+                if($request->file('imagen') != null){
+                    Storage::disk('custom')->putFileAs('images/products', $request->file('imagen'), $name);
+                }
+                $prod->Imagen = '/images/products/'.$name;
+                $prod->save();
+                break;
+            case "Usuarios":
+                $request->validate([
+                    'tar1' => 'required|max:200',
+                    'tar2' => 'required|max:200',
+                    'tar3' => 'required|max:9',
+                    'tar4' => 'required|email:rfc,dns|unique:users,email',
+                    'tar5' => 'required|max:10',
+                    'tar6' => 'required|numeric|digits:9|unique:users,telefono',
+                    'tar7' => 'required|max:200',
+                    'tar8' => 'nullable|max:200',
+                ]);
+                $prod = new \App\Models\User();
+                $prod->Nombre = $request->tar1;
+                $prod->Apellidos = $request->tar2;
+                $prod->DNI_NIF = $request->tar3;
+                $prod->Email = $request->tar4;
+                $prod->Nacimiento = $request->tar5;
+                $prod->Telefono = $request->tar6;
+                $prod->Direccion_envio = $request->tar7;
+                $prod->Password = $request->tar9;
+                $prod->Registro = "";
+                if($request->tar8 != null){
+                    $prod->Direccion_facturacion = $request->tar8;
+                } else {
+                    $prod->Direccion_facturacion = $request->tar7;
+                }
+                $prod->Privilegios = ($request->medicion == "option1");
+                $prod->save();
+                break;
+            case "Categorias":
+                $request->validate([
+                    'tar1' => 'required|max:200',
+                ]);
+                $prod = new \App\Models\Supercategory();
+                $prod->Nombre = $request->tar1;
+                $prod->save();
+                break;
+            case "Subcategorias":
+                $request->validate([
+                    'tar1' => 'nullable|max:200',
+                ]);
+                $prod = new \App\Models\Concretecategory();
+                $prod->Nombre = $request->tar1;
+                $prod->supercategory_id = $request->get('cat');
+                $prod->save();
+                break;
+            case "Cupones":
+                $request->validate([
+                    'tar1' => 'nullable|numeric',
+                ]);
+                $prod = new \App\Models\Coupon();
+                $prod->Descuento = $request->tar1;
+                if($request->get('cat') != 0){
+                    $prod->product_id = $request->get('cat');
+                }
+                $prod->save();
+                break;
+        }
+
+        return redirect('Administracion/'.$cat);
     }
 
 }
