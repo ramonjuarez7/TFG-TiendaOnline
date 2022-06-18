@@ -32,6 +32,8 @@ Route::get('Productos/{supercategory}','CategoryController@inicio_supercat');
 Route::get('About','InicioController@about');
 Route::get('Contact','InicioController@contact');
 
+Route::post('Lector','InicioController@leerCodigo');
+
 Route::get('Buscar','InicioController@search');
 
 Route::get('Producto/{id}','ProductoController@inicio');

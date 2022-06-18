@@ -120,7 +120,43 @@
     <div class="collapse navbar-collapse" id="main_nav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="btn btn-outline-primary" href="#" role="button"><strong>Lector de códigos</strong></a>
+          <a class="btn btn-outline-primary" href="" role="button" data-toggle="modal" data-target="#modalArticulos" data-keyboard="false" data-backdrop="static"><strong>Lector de códigos</strong></a>
+
+          <!-- modal-->
+          <form action="{{ url('/Lector') }}" method="POST">
+            @csrf
+          <div class="modal fade" id="modalArticulos" tabindex="-1" role="dialog" aria-labelledby="modalArticulosLabel">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modalArticulosLabel">Ingreso de Artículos</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label>Escanear Código de Barras</label>
+                    <div class="row">
+                      <div class="col col-lg-12">
+                          <div class="input-group">
+                              <div class="input-group-prepend">
+                                  <div class="input-group-text">
+                                      <i class="fa fa-barcode"></i>
+                                  </div>
+                              </div>
+                              <input type="text" class="form-control producto" name="codigoEscaneado" id="codigoEscaneado">
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCerrarModal">Cerrar</button>
+                  <button type="submit" class="btn btn-primary" id="btnAgregar">Buscar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          </form>
         </li>
         <li class="nav-item">
           <a class="navbar-text"><strong>&nbsp &nbsp Categorías:</strong></a>
@@ -179,9 +215,9 @@
         <aside class="col-md">
           <h6 class="title">Redes sociales</h6>
           <ul class="list-unstyled">
-            <li><a href="#"> <i class="fab fa-facebook"></i> Facebook </a></li>
-            <li><a href="#"> <i class="fab fa-twitter"></i> Twitter </a></li>
-            <li><a href="#"> <i class="fab fa-instagram"></i> Instagram </a></li>
+            <li><a href=""> <i class="fab fa-facebook"></i> Facebook </a></li>
+            <li><a href=""> <i class="fab fa-twitter"></i> Twitter </a></li>
+            <li><a href=""> <i class="fab fa-instagram"></i> Instagram </a></li>
           </ul>
         </aside>
       </div> <!-- row.// -->

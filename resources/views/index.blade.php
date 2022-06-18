@@ -4,16 +4,95 @@
 
 
 @section('content')
+
 <!-- ========================= SECTION INTRO ========================= -->
 <section class="section-intro padding-y-sm">
 <div class="container">
+@if($errors->any())
+            <p class="text-danger">{{ $errors->first() }}</p>
+        @endif
 <div class="intro-banner-wrap">
-  <img src="assets/images/1.jpg" class="img-fluid rounded">
+  <img src="images/1.jpg" class="img-fluid rounded">
 </div>
 </div> <!-- container //  -->
 </section>
 <!-- ========================= SECTION INTRO END// ========================= -->
 <!-- ========================= SECTION FEATURE ========================= -->
+<section class="section-content padding-y-sm">
+<div class="container">
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION FEATURE END// ========================= -->
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content">
+<div class="container">
+<header class="section-heading">
+  <h3 class="section-title"><a href="/Populares">Productos populares</a></h3>
+</header><!-- sect-heading -->
+<div class="row">
+  <?php 
+
+  $products = \App\Models\Product::all()->where('Novedad',1); 
+  $cont = 0;
+  $novedades = [];
+  foreach($products as $prod){
+    $cont++;
+    array_push($novedades,$prod->id)
+  }
+
+  $randomarray = array(rand(0,$cont));
+  $encontrado = false;
+  $repetir = true;
+  for($i = 1; $i < 8; $i++){
+    while($repetir){
+      $random = rand(0,$cont);
+      for($j = 0; $j < count($randomarray); $j++){
+        if($randomarray[$j] == $random){
+          $encontrado = true;
+        }
+      }
+      if(!$encontrado){
+        array_push($randomarray, $random);
+        $repetir = false;
+      } else {
+        $encontrado = false;
+      }
+    }
+    $repetir = true;
+  }
+    
+  ?>
+
+  @for($i = 0; $i < 8; $i++)
+  <?php 
+  
+
+  $auxcont = 0;
+  foreach($products as $prod){
+    $cont++;
+  }
+  ?>
+
+  @endfor
+@foreach($products as $prod)
+  <div class="col-md-3">
+    <div href="{{ url('/Producto/'. $prod->id) }}" class="card card-product-grid">
+      <a href="{{ url('/Producto/'. $prod->id) }}" class="img-wrap"> <img src={{ $prod->Imagen }}> </a>
+      <figcaption class="info-wrap">
+        <a href="{{ url('/Producto/'. $prod->id) }}" class="title">{{ $prod->Nombre }}</a>
+        <div class="price mt-1">{{ sprintf('%.2f',$prod->Precio_individual) }}€</div> <!-- price-wrap.// -->
+      </figcaption>
+    </div>
+  </div>
+  @endforeach
+</div>
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION  END// ========================= -->
+
+<!-- ========================= SECTION  ========================= -->
+<div>&nbsp</div>
+<!-- ========================= SECTION  END// ======================= -->
 <section class="section-content padding-y-sm">
 <div class="container">
 <article class="card card-body">
@@ -22,18 +101,17 @@
     <figure class="item-feature">
       <span class="text-primary"><i class="fa fa-2x fa-truck"></i></span>
       <figcaption class="pt-3">
-        <h5 class="title">Fast delivery</h5>
-        <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore </p>
+        <h5 class="title">Envío rápido</h5>
+        <p>Los pedidos llegan en un máximo de 24 horas tras su pago. </p>
       </figcaption>
     </figure> <!-- iconbox // -->
   </div><!-- col // -->
   <div class="col-md-4">
     <figure  class="item-feature">
-      <span class="text-primary"><i class="fa fa-2x fa-landmark"></i></span>  
+      <span class="text-primary"><i class="fa fa-2x fa-clock"></i></span>  
       <figcaption class="pt-3">
-        <h5 class="title">Creative Strategy</h5>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        <h5 class="title">Disponibilidad 24 horas</h5>
+        <p>Realice sus pedidos en el momento que usted desee.
          </p>
       </figcaption>
     </figure> <!-- iconbox // -->
@@ -42,8 +120,8 @@
     <figure  class="item-feature">
       <span class="text-primary"><i class="fa fa-2x fa-lock"></i></span>
       <figcaption class="pt-3">
-        <h5 class="title">High secured </h5>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        <h5 class="title">Pago seguro </h5>
+        <p>Compromiso de seguridad en el pago de los pedidos.
          </p>
       </figcaption>
     </figure> <!-- iconbox // -->
@@ -52,300 +130,7 @@
 </article>
 </div> <!-- container .//  -->
 </section>
-<!-- ========================= SECTION FEATURE END// ========================= -->
-<!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content">
-<div class="container">
-<header class="section-heading">
-  <h3 class="section-title">Popular products</h3>
-</header><!-- sect-heading -->
-  
-<div class="row">
-  <div class="col-md-3">
-    <div href="#" class="card card-product-grid">
-      <a href="#" class="img-wrap"> <img src="assets/images/items/1.jpg"> </a>
-      <figcaption class="info-wrap">
-        <a href="#" class="title">Just another product name</a>
-        
-        <div class="rating-wrap">
-          <ul class="rating-stars">
-            <li style="width:80%" class="stars-active"> 
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-            </li>
-            <li>
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
-            </li>
-          </ul>
-          <span class="label-rating text-muted"> 34 reviws</span>
-        </div>
-        <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-      </figcaption>
-    </div>
-  </div> <!-- col.// -->
-  <div class="col-md-3">
-    <div href="#" class="card card-product-grid">
-      <a href="#" class="img-wrap"> <img src="assets/images/items/2.jpg"> </a>
-      <figcaption class="info-wrap">
-        <a href="#" class="title">Some item name here</a>
-        
-        <div class="rating-wrap">
-          <ul class="rating-stars">
-            <li style="width:80%" class="stars-active"> 
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-            </li>
-            <li>
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
-            </li>
-          </ul>
-          <span class="label-rating text-muted"> 34 reviws</span>
-        </div>
-        <div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-      </figcaption>
-    </div>
-  </div> <!-- col.// -->
-  <div class="col-md-3">
-    <div href="#" class="card card-product-grid">
-      <a href="#" class="img-wrap"> <img src="assets/images/items/3.jpg"> </a>
-      <figcaption class="info-wrap">
-        <a href="#" class="title">Great product name here</a>
-        
-        <div class="rating-wrap">
-          <ul class="rating-stars">
-            <li style="width:80%" class="stars-active"> 
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-            </li>
-            <li>
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
-            </li>
-          </ul>
-          <span class="label-rating text-muted"> 34 reviws</span>
-        </div>
-        <div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-      </figcaption>
-    </div>
-  </div> <!-- col.// -->
-  <div class="col-md-3">
-    <div href="#" class="card card-product-grid">
-      <a href="#" class="img-wrap"> <img src="assets/images/items/4.jpg"> </a>
-      <figcaption class="info-wrap">
-        <a href="#" class="title">Just another product name</a>
-        
-        <div class="rating-wrap">
-          <ul class="rating-stars">
-            <li style="width:80%" class="stars-active"> 
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-            </li>
-            <li>
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
-            </li>
-          </ul>
-          <span class="label-rating text-muted"> 34 reviws</span>
-        </div>
-        <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-      </figcaption>
-    </div>
-  </div> <!-- col.// -->
-</div> <!-- row.// -->
-</div> <!-- container .//  -->
-</section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
-<!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content">
-<div class="container">
-<header class="section-heading">
-  <h3 class="section-title">New arrived</h3>
-</header><!-- sect-heading -->
-<div class="row">
-  <div class="col-md-3">
-    <div href="#" class="card card-product-grid">
-      <a href="#" class="img-wrap"> <img src="assets/images/items/5.jpg"> </a>
-      <figcaption class="info-wrap">
-        <a href="#" class="title">Just another product name</a>
-        
-        <div class="rating-wrap">
-          <ul class="rating-stars">
-            <li style="width:80%" class="stars-active"> 
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-            </li>
-            <li>
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
-            </li>
-          </ul>
-          <span class="label-rating text-muted"> 34 reviws</span>
-        </div>
-        <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-      </figcaption>
-    </div>
-  </div> <!-- col.// -->
-  <div class="col-md-3">
-    <div href="#" class="card card-product-grid">
-      <a href="#" class="img-wrap"> <img src="assets/images/items/6.jpg"> </a>
-      <figcaption class="info-wrap">
-        <a href="#" class="title">Some item name here</a>
-        
-        <div class="rating-wrap">
-          <ul class="rating-stars">
-            <li style="width:80%" class="stars-active"> 
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-            </li>
-            <li>
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
-            </li>
-          </ul>
-          <span class="label-rating text-muted"> 34 reviws</span>
-        </div>
-        <div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-      </figcaption>
-    </div>
-  </div> <!-- col.// -->
-  <div class="col-md-3">
-    <div href="#" class="card card-product-grid">
-      <a href="#" class="img-wrap"> <img src="assets/images/items/7.jpg"> </a>
-      <figcaption class="info-wrap">
-        <a href="#" class="title">Great product name here</a>
-        
-        <div class="rating-wrap">
-          <ul class="rating-stars">
-            <li style="width:80%" class="stars-active"> 
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-            </li>
-            <li>
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
-            </li>
-          </ul>
-          <span class="label-rating text-muted"> 34 reviws</span>
-        </div>
-        <div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-      </figcaption>
-    </div>
-  </div> <!-- col.// -->
-  <div class="col-md-3">
-    <div href="#" class="card card-product-grid">
-      <a href="#" class="img-wrap"> <img src="assets/images/items/9.jpg"> </a>
-      <figcaption class="info-wrap">
-        <a href="#" class="title">Just another product name</a>
-        
-        <div class="rating-wrap">
-          <ul class="rating-stars">
-            <li style="width:80%" class="stars-active"> 
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-            </li>
-            <li>
-              <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 
-            </li>
-          </ul>
-          <span class="label-rating text-muted"> 34 reviws</span>
-        </div>
-        <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-      </figcaption>
-    </div>
-  </div> <!-- col.// -->
-</div> <!-- row.// -->
-</div> <!-- container .//  -->
-</section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
-<!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content padding-bottom-sm">
-<div class="container">
-<header class="section-heading">
-  <a href="#" class="btn btn-outline-primary float-right">See all</a>
-  <h3 class="section-title">Recommended</h3>
-</header><!-- sect-heading -->
-<div class="row">
-  <div class="col-md-3">
-    <div href="#" class="card card-product-grid">
-      <a href="#" class="img-wrap"> <img src="assets/images/items/1.jpg"> </a>
-      <figcaption class="info-wrap">
-        <a href="#" class="title">Just another product name</a>
-        <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-      </figcaption>
-    </div>
-  </div> <!-- col.// -->
-  <div class="col-md-3">
-    <div href="#" class="card card-product-grid">
-      <a href="#" class="img-wrap"> <img src="assets/images/items/2.jpg"> </a>
-      <figcaption class="info-wrap">
-        <a href="#" class="title">Some item name here</a>
-        <div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-      </figcaption>
-    </div>
-  </div> <!-- col.// -->
-  <div class="col-md-3">
-    <div href="#" class="card card-product-grid">
-      <a href="#" class="img-wrap"> <img src="assets/images/items/3.jpg"> </a>
-      <figcaption class="info-wrap">
-        <a href="#" class="title">Great product name here</a>
-        <div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-      </figcaption>
-    </div>
-  </div> <!-- col.// -->
-  <div class="col-md-3">
-    <div href="#" class="card card-product-grid">
-      <a href="#" class="img-wrap"> <img src="assets/images/items/4.jpg"> </a>
-      <figcaption class="info-wrap">
-        <a href="#" class="title">Just another product name</a>
-        <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-      </figcaption>
-    </div>
-  </div> <!-- col.// -->
-</div> <!-- row.// -->
-</div> <!-- container .//  -->
-</section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name bg padding-y-sm">
-<div class="container">
-<header class="section-heading">
-  <h3 class="section-title">Our Brands</h3>
-</header><!-- sect-heading -->
-<div class="row">
-  <div class="col-md-2 col-6">
-    <figure class="box item-logo">
-      <a href="#"><img src="assets/images/logos/logo1.png"></a>
-      <figcaption class="border-top pt-2">36 Products</figcaption>
-    </figure> <!-- item-logo.// -->
-  </div> <!-- col.// -->
-  <div class="col-md-2  col-6">
-    <figure class="box item-logo">
-      <a href="#"><img src="assets/images/logos/logo2.png"></a>
-      <figcaption class="border-top pt-2">980 Products</figcaption>
-    </figure> <!-- item-logo.// -->
-  </div> <!-- col.// -->
-  <div class="col-md-2  col-6">
-    <figure class="box item-logo">
-      <a href="#"><img src="assets/images/logos/logo3.png"></a>
-      <figcaption class="border-top pt-2">25 Products</figcaption>
-    </figure> <!-- item-logo.// -->
-  </div> <!-- col.// -->
-  <div class="col-md-2  col-6">
-    <figure class="box item-logo">
-      <a href="#"><img src="assets/images/logos/logo4.png"></a>
-      <figcaption class="border-top pt-2">72 Products</figcaption>
-    </figure> <!-- item-logo.// -->
-  </div> <!-- col.// -->
-  <div class="col-md-2  col-6">
-    <figure class="box item-logo">
-      <a href="#"><img src="assets/images/logos/logo5.png"></a>
-      <figcaption class="border-top pt-2">41 Products</figcaption>
-    </figure> <!-- item-logo.// -->
-  </div> <!-- col.// -->
-  <div class="col-md-2  col-6">
-    <figure class="box item-logo">
-      <a href="#"><img src="assets/images/logos/logo2.png"></a>
-      <figcaption class="border-top pt-2">12 Products</figcaption>
-    </figure> <!-- item-logo.// -->
-  </div> <!-- col.// -->
-</div> <!-- row.// -->
-</div><!-- container // -->
-</section>
-<!-- ========================= SECTION  END// ========================= -->
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name padding-y">
-<div class="container">
-<h3 class="mb-3">Download app demo text</h3>
-<a href="#"><img src="assets/images/misc/appstore.png" height="40"></a>
-<a href="#"><img src="assets/images/misc/appstore.png" height="40"></a>
-</div><!-- container // -->
-</section>
-<!-- ========================= SECTION  END// ======================= -->
+<div>&nbsp</div>
+<div>&nbsp</div>
+
 @endsection
