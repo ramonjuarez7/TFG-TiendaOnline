@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <label for="stock"><strong>DNI/NIF*</strong></label>
-                    <input type="text" name="dni" id="nombre" class='form-control' placeholder='DNI/NIF' required>
+                    <input type="text" maxlength="9" name="dni" id="nombre" class='form-control' placeholder='DNI/NIF' required>
                 </div>
                 <div class="form-group">
                     <label for="stock"><strong>Teléfono*</strong></label>
@@ -98,4 +98,5 @@
             </div>
         </div>
     </form>
+
 @endsection

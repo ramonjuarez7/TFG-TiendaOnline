@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Mail\RegistroCompleto;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Crypt;
 
 use ShoppingCart;
 
@@ -90,7 +91,7 @@ class UserController extends Controller
 
         $usuario = User::where('Email',$email)->firstOrFail();
 
-        if($usuario->Password == $request->passwd){
+        if(Crypt::decryptString((String) $usuario->Password) == $request->passwd){
             switch($target){
                 case "Telefono":
                     $request->validate([
@@ -120,7 +121,8 @@ class UserController extends Controller
                     $request->validate([
                         'tar' => 'required|confirmed|max:20',
                     ]);
-                    $usuario->Password = $request->tar;
+                    $encriptedpasswd = Crypt::encryptString($request->tar);
+                    $usuario->Password = $encriptedpasswd;
                     break;
             }
             $usuario->save();

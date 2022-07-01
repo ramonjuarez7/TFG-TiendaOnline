@@ -82,7 +82,8 @@ class Order extends Model
             $Pedido->Precio_total += $item->total - $item->Descuento;
             $Pedido->Pagado = false;
             $Pedido->Entregado = false;
-            //$Pedido->Fecha = \Carbon::now();
+            $product->Stock -= $item->qty;
+            $product->save();
             $Pedido->addProduct($product, $item->qty, $item->Descuento);
 
             foreach($coupons as $coup){

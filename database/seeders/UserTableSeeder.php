@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Coupon;
+use Illuminate\Support\Facades\Crypt;
 
 class UserTableSeeder extends Seeder
 {
@@ -20,11 +21,11 @@ class UserTableSeeder extends Seeder
         \DB::table('users')->delete();
 
         $user = new User();
-        $user->Email = "admin1@butore.es";
+        $user->Email = "admin1@butore.com";
         $user->DNI_NIF = "00000000A";
         $user->Nombre = "Ramón";
         $user->Apellidos = "Juárez Cánovas";
-        $user->Password = "123";
+        $user->Password = Crypt::encryptString("123");
         $user->Nacimiento = "12/04/1998";
         $user->Registro = "06/04/2022";
         $user->Telefono = 677890588;
@@ -39,11 +40,11 @@ class UserTableSeeder extends Seeder
         $user->addCoupon(Coupon::FindOrFail(4), 2);
 
         $user = new User();
-        $user->Email = "user1@butore.es";
+        $user->Email = "user1@butore.com";
         $user->DNI_NIF = "00000000B";
         $user->Nombre = "Miguel";
         $user->Apellidos = "Vázquez Sánchez";
-        $user->Password = "123";
+        $user->Password = Crypt::encryptString("123");
         $user->Nacimiento = "22/04/1993";
         $user->Registro = "06/04/2022";
         $user->Telefono = 677890534;

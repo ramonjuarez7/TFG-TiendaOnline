@@ -70,6 +70,8 @@ class OrderController extends Controller
 
         $order = Order::findOrFail($id);
 
+
+
         if($usuario->id == $order->user_id){
             $order->delete();
             return Redirect('Pedidos');

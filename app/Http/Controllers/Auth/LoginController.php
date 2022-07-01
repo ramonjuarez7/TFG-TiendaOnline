@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use App\Models\Supercategory;
 use App\Models\Concretecategory;
 use App\Models\User;
@@ -62,24 +63,30 @@ class LoginController extends Controller
         $cart = ShoppingCart::all();
 
         $usuario_exist = \DB::table('users')
-            ->where('Email', '=',$request->email)
-            ->where('Password','=',$request->passwd)  
+            ->where('Email', '=',$request->email) 
             ->exists();
 
-
         if($usuario_exist){
-            $usuario = User::where('Email',$request->email)
-                ->where('Password',$request->passwd)    
+            $usuario = User::where('Email',$request->email)    
                 ->firstOrFail();
 
-            \App\Models\Order::actualizarDescuentosCarritoLogin($usuario);
-            Auth::login($usuario);
-            return redirect('/Perfil');  
+            $decriptedpasswd = Crypt::decryptString((String) $usuario->Password);
+            if($decriptedpasswd == $request->passwd){
+                \App\Models\Order::actualizarDescuentosCarritoLogin($usuario);
+                Auth::login($usuario);
+                return redirect('/Perfil');  
+            } else {
+                $e = true;
+            
+                return view('auth.login')->with('credentialerror', $e)->with('supercategories', $sc)
+                    ->with('concretecategories', $cc)->with('cart', $cart);
+            }
+            
         }else{
             $e = true;
             
             return view('auth.login')->with('credentialerror', $e)->with('supercategories', $sc)
-                ->with('concretecategories', $cc)->with('cart', $cart);;
+                ->with('concretecategories', $cc)->with('cart', $cart);
         }
     }
 

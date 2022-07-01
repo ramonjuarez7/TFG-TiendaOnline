@@ -10,6 +10,7 @@ use App\Models\Supercategory;
 use App\Models\Concretecategory;
 use App\Models\Coupon;
 use App\ServiceLayer\Services;
+use Illuminate\Support\Facades\Crypt;
 
 use Redirect;
 use ShoppingCart;
@@ -305,7 +306,7 @@ class AdminController extends Controller
                 $prod->Nacimiento = $request->tar5;
                 $prod->Telefono = $request->tar6;
                 $prod->Direccion_envio = $request->tar7;
-                $prod->Password = $request->tar9;
+                $prod->Password = Crypt::encryptString($request->tar9);
                 $prod->Registro = "";
                 if($request->tar8 != null){
                     $prod->Direccion_facturacion = $request->tar8;

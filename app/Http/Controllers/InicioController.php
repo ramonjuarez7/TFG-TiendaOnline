@@ -51,4 +51,11 @@ class InicioController extends Controller
 
         return redirect('/')->withErrors(['msg' => 'Código no encontrado']);
     }
+
+    public function novedades(){
+        $cart = ShoppingCart::all();
+        $sc = Supercategory::All();
+        $cc = Concretecategory::All();
+        return view('novedades')->with('supercategories', $sc)->with('concretecategories', $cc)->with('cart', $cart);
+    }
 }

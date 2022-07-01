@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('Informacion');
             $table->boolean('Medicion'); //true = kilogramos, false = litros
             $table->float('Peso_volumen',4,2); //en función de si el valor Medicion es true o false
-            $table->float('Precio_individual',3,2); //precio del producto individual
-            $table->float('Precio_peso_volumen',3,2); //precio por unidad de peso o volumen
+            $table->float('Precio_individual',5,2); //precio del producto individual
+            $table->float('Precio_peso_volumen',5,2); //precio por unidad de peso o volumen
             $table->string('Codigo_barras')->unique();
             $table->integer('Stock');
             $table->integer('Maximo_pedido');

@@ -52,7 +52,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $datos = \DB::select('SELECT * FROM order_product WHERE order_id ='. $ord->id) ?>
+                                    <?php $datos = \DB::select('SELECT * FROM order_product WHERE order_id ='. $ord->id.' ORDER BY Linea') ?>
                                     @foreach($datos as $prod)
                                         <tr>
                                         @if($prod->product_id != null)
@@ -161,7 +161,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $datos = \DB::select('SELECT * FROM order_product WHERE order_id ='. $ord->id) ?>
+                                        <?php $datos = \DB::select('SELECT * FROM order_product WHERE order_id ='. $ord->id.' ORDER BY Linea') ?>
                                         @foreach($datos as $prod)
                                     <tr>
                                         @if($prod->product_id != null)

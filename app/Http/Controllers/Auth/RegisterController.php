@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Supercategory;
 use App\Models\Concretecategory;
 use App\Models\User;
 use App\Mail\RegistroCompleto;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 
 use ShoppingCart;
 
@@ -107,15 +109,16 @@ class RegisterController extends Controller
             }
             
             $usuario->Nacimiento = $request->nacimiento;
-            $usuario->Password = $request->passwd;
+            $usuario->Password = Crypt::encryptString($request->passwd);
             $usuario->Telefono = $request->telefono;
             $usuario->Privilegios = false;
             $usuario->Registro = "06/04/2022";
             $usuario->save();
 
-            Mail::to($usuario->Email)->send(new RegistroCompleto($usuario));     
+            //Mail::to($usuario->Email)->send(new RegistroCompleto($usuario));     
 
         }catch(\Exception $e){
+            echo $e;
             return view('user.nocompleto')->with('supercategories', $sc)->with('concretecategories', $cc)->with('cart', $cart);
         }
 

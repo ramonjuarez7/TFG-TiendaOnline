@@ -62,19 +62,7 @@ class ConcretecategoryTableSeeder extends Seeder
         $category->save();
 
         $category = new Concretecategory();
-        $category->Nombre = "Vinos blancos";
-        Supercategory::FindOrFail(1);
-        $category->supercategory_id = 1;
-        $category->save();
-
-        $category = new Concretecategory();
-        $category->Nombre = "Vinos rosados";
-        Supercategory::FindOrFail(1);
-        $category->supercategory_id = 1;
-        $category->save();
-
-        $category = new Concretecategory();
-        $category->Nombre = "Vinos tintos";
+        $category->Nombre = "Vinos";
         Supercategory::FindOrFail(1);
         $category->supercategory_id = 1;
         $category->save();

@@ -24,7 +24,8 @@ Route::get('Carrito', 'CarritoController@index');
 Route::get('Carrito/{id}/{cantidad}', 'ProductoController@addToCartWithQuantity');
 Route::get('Carrito/{id}', 'ProductoController@addToCart');
 
-
+Route::get('Registro', 'Auth\RegisterController@registro');
+Route::post('Registro', 'Auth\RegisterController@useradd');
 
 Route::get('Productos/{supercategory}/{midcategory}','CategoryController@inicio_concretecat');
 Route::get('Productos/{supercategory}','CategoryController@inicio_supercat');
@@ -33,13 +34,11 @@ Route::get('About','InicioController@about');
 Route::get('Contact','InicioController@contact');
 
 Route::post('Lector','InicioController@leerCodigo');
+Route::get('Novedades','InicioController@novedades');
 
 Route::get('Buscar','InicioController@search');
 
 Route::get('Producto/{id}','ProductoController@inicio');
-
-Route::get('Registro', 'Auth\RegisterController@registro');
-Route::post('Registro', 'Auth\RegisterController@useradd');
 
 Route::get('Login', 'Auth\LoginController@loginIndex');
 Route::post('Login','Auth\LoginController@loginPost');
@@ -74,6 +73,8 @@ Route::post('Administracion/{cat}/Add/Elemento/{id}','AdminController@addcoupon'
 
 
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
